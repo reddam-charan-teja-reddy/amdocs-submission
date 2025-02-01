@@ -17,9 +17,7 @@ export async function POST(request: Request) {
 				{ status: 500 }
 			);
 		}
-		const genAI = new GoogleGenerativeAI(
-			process.env.GOOGLE_API_KEY
-		);
+		const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
 
 		const model = 'gemini-1.5-flash-002';
 
@@ -87,7 +85,8 @@ Please provide an updated version of the roadmap that:
 6. Ensures the modifications align with the user's skills and interests
 7. Maintains the same JSON structure as the original roadmap
 8. Output the modified roadmap in the same JSON format as the input roadmap.
-9. provide only the JSON output, no other text or comments.`,
+9. provide only the JSON output, no other text or comments.
+10. examples of good link:https://www.hackerrank.com/ examples of bad link:https://www.hackerrank.com/%20(and%20https://www.codewars.com/)`,
 			};
 
 			const req = {
@@ -137,9 +136,8 @@ Please provide an updated version of the roadmap that:
 				for users based on their goals, skills, interests, education, 
 				country, and any additional custom messages. The roadmap should break down the user's goal into 
 				smaller, achievable milestones, with clear outcomes and actionable steps. Each milestone should 
-				include high-quality resources, such as courses, books, tools, or activities or certifications, with direct links whenever possible.
-				o
-
+				include high-quality resources, such as courses, books, tools,
+				 or activities or certifications, with direct links whenever possible.
 **Output Format:**
 The JSON output must be valid and follow this structure:
 
@@ -179,24 +177,30 @@ Resource Selection:
 Reputable Sources Only: Prioritize links from:
 Learning Platforms: Coursera, edX, LinkedIn Learning.
 don't use udemy
-Industry Leaders: Autodesk (CAD), Siemens (engineering), Adobe (design), AWS/Microsoft/Google (tech), ASME/IEEE (standards), WHO/CDC (healthcare).
+examples of good link:https://www.hackerrank.com/
+examples of bad link:https://www.hackerrank.com/%20(and%20https://www.codewars.com/)
+Industry Leaders: Autodesk (CAD), Siemens (engineering),
+ Adobe (design), AWS/Microsoft/Google (tech), ASME/IEEE (standards), WHO/CDC (healthcare).
 Certifications: Platform-specific certifications (e.g., AWS Certified, Autodesk Certified Professional).
 Free Tools & Trials: Fusion 360, FreeCAD, Google Cloud Free Tier, Adobe Creative Cloud Trials.
 Avoid Generic Advice: Never use phrases like “search for courses” or placeholder links.
 Domain-Specific Customization:
-Tech/CS: Link to coding platforms (Codecademy, freeCodeCamp), GitHub repos, or official docs (React.js, Python.org).
+Tech/CS: Link to coding platforms (Codecademy, freeCodeCamp), GitHub repos, or official docs
+ (React.js, Python.org).
 Engineering/CAD: Use Autodesk, SolidWorks, GrabCAD, or NPTEL (India).
 Healthcare: Include WHO guidelines, Coursera medical courses (Johns Hopkins), or AMA resources.
 Design/Arts: Link to Adobe Tutorials, Skillshare classes, or Behance projects.
 Business/Finance: Use LinkedIn Learning, CFA Institute, or Harvard Business School Online.
 Geographic Relevance:
 Localized Resources: Add country-specific platforms (e.g., openSAP for Germany, upGrad for India).
-Language Support: If user's country prefers non-English resources, prioritize localized content (e.g., Coursera en Español).
+Language Support: If user's country prefers non-English resources, prioritize localized content
+ (e.g., Coursera en Español).
 Learning Speed Adaptation:
 Fast Learners: Recommend intensive programs (Coursera Specializations, bootcamps).
 Slow Learners: Suggest self-paced courses (Udemy, YouTube playlists) or books.
 Project-Based Milestones:
-Include hands-on activities with links to project templates (GitHub, GrabCAD) or competitions (Kaggle, Instructables).
+Include hands-on activities with links to project templates (GitHub, GrabCAD) or competitions
+ (Kaggle, Instructables).
 Validation Rules:
 Links Must Be:
 Direct (no redirects).
@@ -226,8 +230,7 @@ learning speed: ${learningSpeed}
 			//console.log(result.candidates[0].content);
 
 			try {
-				const rawText =
-					result.candidates[0].content.parts[0].text;
+				const rawText = result.candidates[0].content.parts[0].text;
 
 				// Strip markdown formatting (e.g., ```json and ```)
 				const cleanText = rawText.replace(/```json|```/g, '');
@@ -240,8 +243,7 @@ learning speed: ${learningSpeed}
 				roadmapData.milestones.forEach((milestone: Milestone) => {
 					milestone.how_to.forEach((howTo: HowTo) => {
 						// Normalize the type to lowercase
-						const normalizedType =
-							howTo.type.toLowerCase() as HowTo['type'];
+						const normalizedType = howTo.type.toLowerCase() as HowTo['type'];
 						howTo.type = normalizedType;
 					});
 				});
