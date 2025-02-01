@@ -1,0 +1,83 @@
+.container {
+	@apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.card {
+	@apply bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6;
+}
+
+.button {
+	@apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200;
+}
+
+.buttonSecondary {
+	@apply inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200;
+}
+
+.input {
+	@apply block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm;
+}
+
+.badge {
+	@apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badgePrimary {
+	@apply bg-indigo-100 text-indigo-800;
+}
+
+.badgeSecondary {
+	@apply bg-gray-100 text-gray-800;
+}
+
+.modalContent {
+	@apply inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6;
+}
+
+.fadeIn {
+	@apply animate-[fadeIn_0.3s_ease-in-out];
+}
+
+.slideUp {
+	@apply animate-[slideUp_0.3s_ease-in-out];
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slideUp {
+	from {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.loadingSpinner {
+	@apply animate-spin h-5 w-5 text-indigo-600;
+}
+
+.navLink {
+	@apply text-gray-600 hover:text-indigo-600 transition-colors duration-200;
+}
+
+.navLinkActive {
+	@apply text-indigo-600 font-medium;
+}
+
+.profileImage {
+	@apply h-10 w-10 rounded-full object-cover border-2 border-white shadow-sm;
+}
+
+.gridLayout {
+	@apply grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3;
+}
